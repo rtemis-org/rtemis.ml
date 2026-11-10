@@ -1,0 +1,33 @@
+# Dev
+__dev/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Zed
+.zed/
+
+# R
+*.Rcheck/
+*.tar.gz
+revdep/
+cran-comments.md
+rhub/
+.lintr
+
+# Agents
+.claude/
+AGENTS.md
+CLAUDE.md
+
+# CRAN
+CRAN-SUBMISSION
+
+# Rust (extendr)
+src/rust/vendor
+src/Makevars
+src/Makevars.win

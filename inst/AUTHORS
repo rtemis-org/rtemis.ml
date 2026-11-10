@@ -1,0 +1,16 @@
+Authors of the Rust crates compiled into rtemis.ml and bundled as source in
+src/rust/vendor.tar.xz. Licenses and repositories: LICENSE.note.
+
+extendr-api 0.9.0: The extendr contributors
+extendr-ffi 0.9.0: The extendr contributors
+extendr-macros 0.9.0: The extendr contributors
+lazy_static 1.5.1: Marvin Löbel
+once_cell 1.21.4: Aleksey Kladov
+paste 1.0.15: David Tolnay
+proc-macro2 1.0.107: David Tolnay, Alex Crichton
+quote 1.0.47: David Tolnay
+readonly 0.2.14: David Tolnay
+rtemis 0.1.0: E.D. Gennatas
+syn 2.0.119: David Tolnay
+syn 3.0.10: David Tolnay
+unicode-ident 1.0.27: David Tolnay

@@ -1,0 +1,96 @@
+The compiled code of rtemis.ml includes the following Rust crates, bundled
+as source in src/rust/vendor.tar.xz. The license files that a crate ships
+are part of that archive; the notices of crates that ship none follow the
+list.
+
+------------------------------------------------------------------------
+
+Name:        extendr-api
+Version:     0.9.0
+Authors:     The extendr contributors
+License:     MIT
+Repository:  https://github.com/extendr/extendr
+
+Name:        extendr-ffi
+Version:     0.9.0
+Authors:     The extendr contributors
+License:     MIT
+Repository:  https://github.com/extendr/extendr
+
+Name:        extendr-macros
+Version:     0.9.0
+Authors:     The extendr contributors
+License:     MIT
+Repository:  https://github.com/extendr/extendr
+
+Name:        lazy_static
+Version:     1.5.1
+Authors:     Marvin Löbel
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/rust-lang-nursery/lazy-static.rs
+
+Name:        once_cell
+Version:     1.21.4
+Authors:     Aleksey Kladov
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/matklad/once_cell
+
+Name:        paste
+Version:     1.0.15
+Authors:     David Tolnay
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/dtolnay/paste
+
+Name:        proc-macro2
+Version:     1.0.107
+Authors:     David Tolnay, Alex Crichton
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/dtolnay/proc-macro2
+
+Name:        quote
+Version:     1.0.47
+Authors:     David Tolnay
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/dtolnay/quote
+
+Name:        readonly
+Version:     0.2.14
+Authors:     David Tolnay
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/dtolnay/readonly
+
+Name:        rtemis
+Version:     0.1.0
+Authors:     E.D. Gennatas
+License:     BSD-3-Clause
+Repository:  https://github.com/rtemis-org/rtemis-rs
+
+Name:        syn
+Version:     2.0.119
+Authors:     David Tolnay
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/dtolnay/syn
+
+Name:        syn
+Version:     3.0.10
+Authors:     David Tolnay
+License:     MIT OR Apache-2.0
+Repository:  https://github.com/dtolnay/syn
+
+Name:        unicode-ident
+Version:     1.0.27
+Authors:     David Tolnay
+License:     (MIT OR Apache-2.0) AND Unicode-3.0
+Repository:  https://github.com/dtolnay/unicode-ident
+
+------------------------------------------------------------------------
+License notice of extendr-api, extendr-ffi, extendr-macros:
+
+Copyright (c) 2021 The Extendr contributors (See CONTRIBUTORS.md)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

@@ -1,0 +1,36 @@
+Package: rtemis.ml
+Title: Performance Metrics for Classification
+Version: 0.1.0
+Date: 2026-11-10
+Authors@R: c(
+    person(given = "E.D.", family = "Gennatas", role = c("aut", "cre", "cph"),
+           email = "gennatas@gmail.com",
+           comment = c(ORCID = "0000-0001-9280-3609")),
+    person(given = "Authors of the bundled Rust crates", role = c("ctb", "cph"),
+           comment = "Rust crates compiled into the package; see inst/AUTHORS")
+    )
+Description: Computes the area under the receiver operating characteristic
+    curve (AUC) and the average precision of binary classifiers, and their
+    one-vs-rest values for each class of a multiclass outcome. The AUC is the
+    Mann-Whitney U statistic divided by the number of positive-negative pairs
+    (Hanley and McNeil (1982) <doi:10.1148/radiology.143.1.7063747>), and the
+    average precision is the area under the stepwise precision-recall curve.
+    The computations are implemented in the 'rtemis' 'Rust' crate, which sorts
+    the scores once per problem and reads the inputs without copying them.
+URL: https://www.rtemis.org, https://github.com/rtemis-org/rtemis.ml
+BugReports: https://github.com/rtemis-org/rtemis.ml/issues
+License: BSD_3_clause + file LICENSE
+Encoding: UTF-8
+Language: en-US
+Depends:
+    R (>= 4.2)
+Imports:
+    utils
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/testthat/parallel: true
+Roxygen: list(markdown = TRUE)
+Config/rextendr/version: 0.5.0
+SystemRequirements: Cargo (Rust's package manager), rustc >= 1.71.0, xz
+Config/roxygen2/version: 8.1.1
