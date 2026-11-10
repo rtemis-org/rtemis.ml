@@ -82,8 +82,8 @@ cfg <- if (is_debug) "debug" else "release"
 )
 
 # @RUN_DOCUMENT@: "yes" runs the `document` binary after the library build,
-# which regenerates R/extendr-wrappers.R. Development builds (NOT_CRAN set)
-# take "yes". CRAN builds (NOT_CRAN unset) take "no" and install the committed
+# which regenerates R/extendr-wrappers.R. Development builds (NOT_CRAN or
+# DEBUG set) take "yes". CRAN builds (NOT_CRAN unset) take "no" and install the committed
 # R/extendr-wrappers.R; the binary builds in the dev profile with other
 # RUSTFLAGS, which recompiles every dependency, and its build scripts fail to
 # run on win-builder (os error 193). webR builds take "no", because a binary
