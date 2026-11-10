@@ -20,6 +20,11 @@ VENDOR_DIR = $(CURDIR)/vendor
 #
 # A vendor directory, or else rust/vendor.tar.xz unpacked into one, supplies
 # the crates for an offline build.
+#
+# The `document` binary writes R/extendr-wrappers.R and runs on the build host.
+# webR builds cross-compile to wasm32-unknown-emscripten, where the binary
+# cannot link or run; they skip it (@RUN_DOCUMENT@ is "no") and install the
+# R/extendr-wrappers.R of the source package.
 $(STATLIB):
 
 	if [ -d ./vendor ]; then \
@@ -37,9 +42,11 @@ $(STATLIB):
 	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
 	@PANIC_EXPORTS@RUSTFLAGS="$(RUSTFLAGS) --print=native-static-libs" cargo build @CRAN_FLAGS@ @CARGO_CONFIG@ --lib @PROFILE@ --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) @TARGET@
 
-	export CARGO_HOME=$(CARGOTMP) && \
-	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
-	cargo run @CRAN_FLAGS@ @CARGO_CONFIG@ --bin document --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) @TARGET@
+	if [ "@RUN_DOCUMENT@" = "yes" ]; then \
+		export CARGO_HOME=$(CARGOTMP) && \
+		export PATH="$(PATH):$(HOME)/.cargo/bin" && \
+		cargo run @CRAN_FLAGS@ @CARGO_CONFIG@ --bin document --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) @TARGET@; \
+	fi
 
 	# CARGOTMP is removed after every build.
 	rm -Rf $(CARGOTMP);

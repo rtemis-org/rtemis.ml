@@ -81,6 +81,11 @@ cfg <- if (is_debug) "debug" else "release"
   ""
 )
 
+# @RUN_DOCUMENT@: "yes" runs the `document` binary after the library build;
+# webR builds take "no", because a binary cross-compiled to WebAssembly cannot
+# run on the build host.
+.run_document <- ifelse(is_wasm, "no", "yes")
+
 # Template and output for the current platform.
 is_windows <- .Platform[["OS.type"]] == "windows"
 
@@ -110,7 +115,8 @@ new_txt <- gsub("@CRAN_FLAGS@", .cran_flags, mv_txt) |>
   gsub("@CLEAN_TARGET@", .clean_targets, x = _) |>
   gsub("@LIBDIR@", .libdir, x = _) |>
   gsub("@TARGET@", .target, x = _) |>
-  gsub("@PANIC_EXPORTS@", .panic_exports, x = _)
+  gsub("@PANIC_EXPORTS@", .panic_exports, x = _) |>
+  gsub("@RUN_DOCUMENT@", .run_document, x = _, fixed = TRUE)
 
 message("Writing `", mv_ofp, "`.")
 con <- file(mv_ofp, open = "wb")

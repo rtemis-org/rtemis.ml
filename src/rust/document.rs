@@ -1,5 +1,6 @@
 // Writes R/extendr-wrappers.R from the metadata of the extendr module
-// `rtemis_ml`. The Makevars run it after building the static library.
+// `rtemis_ml`. The Makevars run it after building the static library, except
+// in webR builds.
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let wrapper_path = "../R/extendr-wrappers.R";
     let header = "\
