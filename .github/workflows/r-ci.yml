@@ -98,3 +98,12 @@ jobs:
           R CMD build --no-manual .
           R CMD INSTALL rtemis.ml_*.tar.gz
           Rscript -e 'stopifnot(rtemis.ml::roc_auc(c(0L, 1L), c(0.2, 0.8)) == 1)'
+      # CRAN builds install the committed R/extendr-wrappers.R; a development
+      # build regenerates it from the Rust doc comments, and the two must match.
+      - name: Check that R/extendr-wrappers.R is current
+        env:
+          RUSTUP_TOOLCHAIN: ${{ steps.msrv.outputs.version }}
+          NOT_CRAN: "true"
+        run: |
+          R CMD INSTALL --no-test-load .
+          git diff --exit-code R/extendr-wrappers.R

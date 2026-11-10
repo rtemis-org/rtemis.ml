@@ -36,10 +36,14 @@ $(STATLIB):
 	export LIBRARY_PATH="$(LIBRARY_PATH);$(CURDIR)/$(TARGET_DIR)/libgcc_mock" && \
 	RUSTFLAGS="$(RUSTFLAGS) --print=native-static-libs" cargo build @CRAN_FLAGS@ @CARGO_CONFIG@ --target=$(TARGET) --lib @PROFILE@ --manifest-path=rust/Cargo.toml --target-dir=$(TARGET_DIR)
 
-	# R/extendr-wrappers.R.
-	export CARGO_HOME=$(CARGOTMP) && \
-	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
-	cargo run @CRAN_FLAGS@ @CARGO_CONFIG@ --bin document --target $(TARGET) --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+	# R/extendr-wrappers.R, in development builds (NOT_CRAN set). CRAN builds
+	# (@RUN_DOCUMENT@ is "no") install the R/extendr-wrappers.R of the source
+	# package.
+	if [ "@RUN_DOCUMENT@" = "yes" ]; then \
+		export CARGO_HOME=$(CARGOTMP) && \
+		export PATH="$(PATH):$(HOME)/.cargo/bin" && \
+		cargo run @CRAN_FLAGS@ @CARGO_CONFIG@ --bin document --target $(TARGET) --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR); \
+	fi
 
 	# CARGOTMP is removed after every build.
 	rm -Rf $(CARGOTMP);

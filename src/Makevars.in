@@ -22,9 +22,10 @@ VENDOR_DIR = $(CURDIR)/vendor
 # the crates for an offline build.
 #
 # The `document` binary writes R/extendr-wrappers.R and runs on the build host.
-# webR builds cross-compile to wasm32-unknown-emscripten, where the binary
-# cannot link or run; they skip it (@RUN_DOCUMENT@ is "no") and install the
-# R/extendr-wrappers.R of the source package.
+# Development builds (NOT_CRAN set) run it. CRAN builds and webR builds skip it
+# (@RUN_DOCUMENT@ is "no") and install the R/extendr-wrappers.R of the source
+# package; webR builds cross-compile to wasm32-unknown-emscripten, where the
+# binary cannot link or run.
 $(STATLIB):
 
 	if [ -d ./vendor ]; then \

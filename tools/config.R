@@ -81,10 +81,14 @@ cfg <- if (is_debug) "debug" else "release"
   ""
 )
 
-# @RUN_DOCUMENT@: "yes" runs the `document` binary after the library build;
-# webR builds take "no", because a binary cross-compiled to WebAssembly cannot
-# run on the build host.
-.run_document <- ifelse(is_wasm, "no", "yes")
+# @RUN_DOCUMENT@: "yes" runs the `document` binary after the library build,
+# which regenerates R/extendr-wrappers.R. Development builds (NOT_CRAN set)
+# take "yes". CRAN builds (NOT_CRAN unset) take "no" and install the committed
+# R/extendr-wrappers.R; the binary builds in the dev profile with other
+# RUSTFLAGS, which recompiles every dependency, and its build scripts fail to
+# run on win-builder (os error 193). webR builds take "no", because a binary
+# cross-compiled to WebAssembly cannot run on the build host.
+.run_document <- ifelse(is_wasm || !is_not_cran, "no", "yes")
 
 # Template and output for the current platform.
 is_windows <- .Platform[["OS.type"]] == "windows"
