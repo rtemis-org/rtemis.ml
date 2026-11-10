@@ -1,3 +1,5 @@
+[![R CI](https://github.com/rtemis-org/rtemis.ml/actions/workflows/r-ci.yml/badge.svg)](https://github.com/rtemis-org/rtemis.ml/actions/workflows/r-ci.yml)
+
 # rtemis.ml
 
 R bindings to the [`rtemis`](https://crates.io/crates/rtemis) Rust crate ([rtemis-org/rtemis-rs](https://github.com/rtemis-org/rtemis-rs)). Each function reads R vectors and matrices in place, checks them against the R interface, and reports errors with R argument names and one-based positions.
@@ -28,7 +30,7 @@ Building from source requires Cargo and rustc 1.71 or later (<https://www.rust-l
 The R package depends on the `rtemis` crate from crates.io. To build against a local checkout of [rtemis-rs](https://github.com/rtemis-org/rtemis-rs), set `RTEMIS_CRATE_PATH` to the crate directory before installing, for example in `~/.Renviron`:
 
 ```sh
-RTEMIS_CRATE_PATH=~/Code/rtemis-rs/crates/rtemis
+RTEMIS_CRATE_PATH=/path/to/rtemis-rs/crates/rtemis
 ```
 
 `tools/config.R` then passes Cargo a `patch.crates-io` override for the build.

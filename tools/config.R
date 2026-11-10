@@ -38,7 +38,7 @@ if (!is_not_cran) {
 )
 
 # RTEMIS_CRATE_PATH, when set, points to a local checkout of the `rtemis`
-# crate (for example ~/Code/rtemis-rs/crates/rtemis). Cargo then builds against
+# crate (for example /path/to/rtemis-rs/crates/rtemis). Cargo then builds against
 # that source in place of the crates.io release named in Cargo.toml. CRAN
 # builds leave it unset.
 crate_path <- Sys.getenv("RTEMIS_CRATE_PATH")
