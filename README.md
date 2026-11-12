@@ -23,7 +23,7 @@ roc_auc(c(0L, 0L, 1L, 1L), c(0.1, 0.4, 0.35, 0.8))
 
 ## Installation
 
-Building from source requires Cargo and rustc 1.71 or later (<https://www.rust-lang.org/tools/install>).
+Building from source requires Cargo and rustc 1.71 or later (<https://rust-lang.org/tools/install/>).
 
 ## Development
 
