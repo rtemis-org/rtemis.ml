@@ -141,7 +141,8 @@ revdep:
 # Run the Rust tests, clippy, and rustfmt check of the binding crate
 rust-check:
     @just _msg "─── Checking Rust code of {{ pkg }}... ───"
-    cd src/rust && cargo fmt --check && cargo clippy --all-targets {{ cargo_config }} -- -D warnings && cargo test {{ cargo_config }}
+    # A patch rewrites the lock's rtemis entry; the committed lock keeps the crates.io release.
+    cd src/rust && cp Cargo.lock Cargo.lock.saved && (cargo fmt --check && cargo clippy --all-targets {{ cargo_config }} -- -D warnings && cargo test {{ cargo_config }}); status=$?; cp Cargo.lock.saved Cargo.lock; rm -f Cargo.lock.saved; exit $status
     @just _msg "Done"
 
 # Vendor Rust crates into src/rust/vendor.tar.xz, and write LICENSE.note and inst/AUTHORS

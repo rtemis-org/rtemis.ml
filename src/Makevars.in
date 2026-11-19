@@ -39,15 +39,23 @@ $(STATLIB):
 		cp rust/vendor-config.toml $(CARGOTMP)/config.toml; \
 	fi
 
+	# A build against a local rtemis crate (RTEMIS_CRATE_PATH set) rewrites
+	# the rtemis entry of Cargo.lock without its crates.io source; the lock is
+	# saved before and restored after each cargo command, so the committed lock
+	# keeps the crates.io release.
+	@SAVE_LOCK@
 	export CARGO_HOME=$(CARGOTMP) && \
 	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
-	@PANIC_EXPORTS@RUSTFLAGS="$(RUSTFLAGS) --print=native-static-libs" cargo build @CRAN_FLAGS@ @CARGO_CONFIG@ --lib @PROFILE@ --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) @TARGET@
+	@PANIC_EXPORTS@RUSTFLAGS="$(RUSTFLAGS) --print=native-static-libs" cargo build @CRAN_FLAGS@ @CARGO_CONFIG@ --lib @PROFILE@ --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) @TARGET@; \
+	status=$$?; @RESTORE_LOCK@ exit $$status
 
 	if [ "@RUN_DOCUMENT@" = "yes" ]; then \
 		export CARGO_HOME=$(CARGOTMP) && \
 		export PATH="$(PATH):$(HOME)/.cargo/bin" && \
 		cargo run @CRAN_FLAGS@ @CARGO_CONFIG@ --bin document --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) @TARGET@; \
+		status=$$?; @RESTORE_LOCK@ exit $$status; \
 	fi
+	@DROP_LOCK@
 
 	# CARGOTMP is removed after every build.
 	rm -Rf $(CARGOTMP);
